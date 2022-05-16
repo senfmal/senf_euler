@@ -50,3 +50,24 @@ def count(item, lst:list) -> int:
         if item == elem:
             count += 1
     return count
+
+def sumOfSquaresGenerator(max:int):
+    num = 1
+    while True:
+        yield num*num
+        num += 1
+        if num > max:
+            break
+
+def squareOfSum(max:int):
+    return sum(list(range(1,max+1)))**2
+
+
+def nthPrime(n:int,limit=10000000000) -> int:
+    count = 0
+    for prime in primeGenerator(limit):
+        searched_prime = prime
+        count += 1
+        #print(count, prime)
+        if count == n:
+            return searched_prime

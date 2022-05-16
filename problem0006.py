@@ -12,10 +12,17 @@ Find the difference between the sum of the squares of the first one hundred natu
 import StopWatch as sw
 import toolkit as tk
 
-stopper = sw.StopWatch("Euler problem 0005 'Sum square difference' - Solution")
+stopper = sw.StopWatch("Euler problem 0006 'Sum square difference' - Solution")
+max = 100
+
+
 
 def solution01():
-    pass
+    squares = sum(list(tk.sumOfSquaresGenerator(max)))
+    print(squares)
+    sum_sq = tk.squareOfSum(max)
+    print(sum_sq)
+    print(sum_sq-squares)
 
 if __name__ == '__main__':
     stopper.startNewStopper("Solution 1")
