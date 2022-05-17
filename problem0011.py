@@ -7,10 +7,10 @@ In the 20×20 grid below, four numbers along a diagonal line have been marked in
 52 70 95 23 04 60 11 42 69 24 68 56 01 32 56 71 37 02 36 91
 22 31 16 71 51 67 63 89 41 92 36 54 22 40 40 28 66 33 13 80
 24 47 32 60 99 03 45 02 44 75 33 53 78 36 84 20 35 17 12 50
-32 98 81 28 64 23 67 10 26 38 40 67 59 54 70 66 18 38 64 70
-67 26 20 68 02 62 12 20 95 63 94 39 63 08 40 91 66 49 94 21
-24 55 58 05 66 73 99 26 97 17 78 78 96 83 14 88 34 89 63 72
-21 36 23 09 75 00 76 44 20 45 35 14 00 61 33 97 34 31 33 95
+32 98 81 28 64 23 67 10 '26' 38 40 67 59 54 70 66 18 38 64 70
+67 26 20 68 02 62 12 20 95 '63' 94 39 63 08 40 91 66 49 94 21
+24 55 58 05 66 73 99 26 97 17 '78' 78 96 83 14 88 34 89 63 72
+21 36 23 09 75 00 76 44 20 45 35 '14' 00 61 33 97 34 31 33 95
 78 17 53 28 22 75 31 67 15 94 03 80 04 62 16 14 09 53 56 92
 16 39 05 42 96 35 31 47 55 58 88 24 00 17 54 24 36 29 85 57
 86 56 00 48 35 71 89 07 05 44 44 37 44 60 21 58 51 54 17 58
@@ -30,10 +30,74 @@ import toolkit as tk
 import numpy as np
 
 stopper = sw.StopWatch("Euler problem 0011 'Largest product in a grid' - Solution")
+adjacent_factor = 4
+dim = 20
 
 def solution01():
-    arrRows = np.
-    with open("input_0011.txt", "r") as input_file:
+    arrGrid = np.loadtxt("input_0011.txt",delimiter=" ")
+    max_product = 0
+    for row in range(dim):
+        for col in range(dim):
+            temp_product = 1
+            hor = row
+            ver = col
+            while True:
+                temp_product *= arrGrid[hor][ver]
+                if hor == row + adjacent_factor or hor == dim-1:
+                    break
+                hor += 1
+            if temp_product > max_product:
+                max_product = temp_product
+            temp_product = 1
+            hor = row
+            ver = col
+            while True:
+                temp_product *= arrGrid[hor][ver]
+                if ver == col + adjacent_factor or ver == dim-1:
+                    break
+                ver += 1
+            if temp_product > max_product:
+                max_product = temp_product
+            temp_product = 1
+            hor = row
+            ver = col
+            while True:
+                temp_product *= arrGrid[hor][ver]
+                if hor == row + adjacent_factor or hor == dim-1 or ver == col + adjacent_factor or ver == dim-1:
+                    break
+                ver += 1
+                hor += 1
+            if temp_product > max_product:
+                max_product = temp_product
+            temp_product = 1
+            hor = row
+            ver = col
+            while True:
+                temp_product *= arrGrid[hor][ver]
+                if hor == row - adjacent_factor or hor == 0 or ver == col + adjacent_factor or ver == dim-1:
+                    break
+                ver += 1
+                hor -= 1
+            if temp_product > max_product:
+                max_product = temp_product
+    print(max_product)
+
+def solution02():
+    g = [[int(t) for t in s.split()] for s in open('input_0011.txt').readlines()]
+
+    maxp = 0
+    rows, cols, path_size = len(g), len(g[0]), 4
+    for i in range(rows):
+        for j in range(cols - path_size + 1):
+            phv = max(g[i][j] * g[i][j+1] * g[i][j+2] * g[i][j+3],
+                    g[j][i] * g[j+1][i] * g[j+2][i] * g[j+3][i])
+            if i <= rows-path_size:
+                pdd = max(g[i][j] * g[i+1][j+1] * g[i+2][j+2] * g[i+3][j+3],
+                        g[i][j+3] * g[i+1][j+2] * g[i+2][j+1] * g[i+3][j])
+            maxp = max(maxp, phv, pdd)
+    
+    print ("Greatest product of", path_size, "adjacent numbers:", maxp)
+
 
         
 
@@ -41,5 +105,7 @@ def solution01():
 if __name__ == '__main__':
     stopper.startNewStopper("Solution 1")
     solution01()
+    stopper.startNewStopper("Correct solution from https://blog.dreamshire.com/solutions/project_euler/project-euler-problem-011-solution/")
+    solution02()
     stopper.stopCurrentWatch()
     print(stopper)
