@@ -9,20 +9,15 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 """
 
 import StopWatch as sw
+import toolkit as tk
 
 stopper = sw.StopWatch("Euler problem 0002 - Solution")
 
-def fibo(limit):
-    n1, n2 = 1, 2
-    while n1 + n2 < limit:
-        yield n1 + n2
-        n1, n2 = n2, n1 + n2
-    print("n1 = {0}, n2 = {1}".format(n1, n2))
 
 def solution01():
     limit = 4000000
     sum = 2
-    for x in fibo(limit):
+    for x in tk.fibo(limit):
         if x % 2 == 0:
             sum += x
     print(sum)

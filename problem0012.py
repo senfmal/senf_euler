@@ -23,13 +23,7 @@ import toolkit as tk
 stopper = sw.StopWatch("Euler problem 0012 'Highly divisible triangular number' - Solution")
 max = 500
 
-def triangleGenerator():
-    num = 0
-    x = 1
-    while True:
-        num += x
-        x += 1
-        yield num
+
 
 def getDivisors(num:int) -> list:
     divisors = []
@@ -49,9 +43,9 @@ def f(L, nMax=45000):
 def solution01():
     for _ in range(int(input())):
         print (f(int(input())))   
-          
+
 def solutionXX():
-    triangles = triangleGenerator()
+    triangles = tk.triangleGenerator()
     start = 1
     for x in range(2,501):
         start *= x 

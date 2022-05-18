@@ -71,3 +71,49 @@ def nthPrime(n:int,limit=10000000000) -> int:
         #print(count, prime)
         if count == n:
             return searched_prime
+
+def isEven(num:int) -> bool:
+    return num % 2 == 0
+
+def collatzGenerator(num:int):
+    while True:
+        yield int(num)
+        if num == 1:
+            break
+        if isEven(num):
+            num /= 2
+        else:
+            num = 3 * num + 1
+
+def fac(num:int) -> int:
+    result = 1
+    for x in range(1, num+1):
+        result *= x 
+    return result
+
+def getDigitProduct(num) -> int:
+    if type(num) == int:
+        num = str(num)
+    product = 1
+    for digit in num:
+        product *= int(digit)
+    return product
+
+def isPythTriplet(a:int, b:int, c:int) -> bool:
+    return c**2 == a**2 + b**2
+
+def triangleGenerator():
+    num = 0
+    x = 1
+    while True:
+        num += x
+        x += 1
+        yield num
+
+def getDigitSum(num) -> int:
+    if type(num) == int:
+        num = str(num)
+    sum = 0
+    for digit in num:
+        sum += int(digit)
+    return sum

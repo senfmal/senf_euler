@@ -11,9 +11,6 @@ import toolkit as tk
 stopper = sw.StopWatch("Euler problem 0009 'Special Pythagorean triplet' - Solution")
 wanted_sum_abc = 1000
 
-def isPythTriplet(a:int, b:int, c:int) -> bool:
-    return c**2 == a**2 + b**2
-
 def isWantedSum(a:int, b:int, c:int) -> bool:
     return wanted_sum_abc == a + b + c
 
@@ -21,7 +18,7 @@ def solution01():
     for a in range(1,wanted_sum_abc // 2):
         for b in range(1,wanted_sum_abc // 3):
             for c in range(1, wanted_sum_abc // 2):
-                if isWantedSum(a, b, c) and isPythTriplet(a, b, c):
+                if isWantedSum(a, b, c) and tk.isPythTriplet(a, b, c):
                     print("Solution: {0} --> a: {1}, b: {2}, c: {3}".format(a*b*c, a, b, c))
 
 if __name__ == '__main__':

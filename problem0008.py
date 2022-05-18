@@ -30,13 +30,7 @@ import toolkit as tk
 stopper = sw.StopWatch("Euler problem 0008 'Largest product in a series' - Solution")
 adjacent_factor = 13
 
-def getProduct(num) -> int:
-    if type(num) == int:
-        num = str(num)
-    product = 1
-    for digit in num:
-        product *= int(digit)
-    return product
+
 
 def solution01():
     with open("input_0008.txt", "r") as f:
@@ -44,7 +38,7 @@ def solution01():
     max_product = 0
     pos = 0
     while True:
-        product = getProduct(strInput[pos:pos+adjacent_factor])
+        product = tk.getDigitProduct(strInput[pos:pos+adjacent_factor])
         if product > max_product:
             max_product = product
         if pos + adjacent_factor == len(strInput):

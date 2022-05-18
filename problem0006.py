@@ -15,8 +15,6 @@ import toolkit as tk
 stopper = sw.StopWatch("Euler problem 0006 'Sum square difference' - Solution")
 max = 100
 
-
-
 def solution01():
     squares = sum(list(tk.sumOfSquaresGenerator(max)))
     print(squares)
