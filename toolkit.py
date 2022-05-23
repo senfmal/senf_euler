@@ -117,3 +117,13 @@ def getDigitSum(num) -> int:
     for digit in num:
         sum += int(digit)
     return sum
+
+def isLeapYear(year:int) -> bool:
+    if year % 100 == 0:
+        if year % 400 == 0:
+            return True
+        else:
+            False
+    if year % 4 == 0:
+        return True
+    return False
