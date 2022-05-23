@@ -127,3 +127,10 @@ def isLeapYear(year:int) -> bool:
     if year % 4 == 0:
         return True
     return False
+
+def getDivisors(num:int) -> list:
+    divisors = []
+    for div in range(num, 0, -1):
+        if num % div == 0:
+            divisors.append(int(num / div))
+    return list(divisors)

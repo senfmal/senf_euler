@@ -25,12 +25,7 @@ max = 500
 
 
 
-def getDivisors(num:int) -> list:
-    divisors = []
-    for div in range(num, 0, -1):
-        if num % div == 0:
-            divisors.append(int(num / div))
-    return divisors
+
 
 def f(L, nMax=45000):
     d = [0]*nMax
@@ -57,7 +52,7 @@ def solutionXX():
     print(start_triangle)
 
     while True:
-        divisors = getDivisors(triangle)
+        divisors = tk.getDivisors(triangle)
         print("{0}: {1}".format(triangle, ', '.join(str(div) for div in divisors)))
         triangle = next(triangles)
         if len(divisors) >= max:
