@@ -27,12 +27,17 @@ def isPrime(num:int) -> bool:
             return False
     return True
 
-def fibo(limit:int):
+def fibo(limit=-1):
     n1, n2 = 1, 2
-    while n1 + n2 < limit:
-        yield n1 + n2
-        n1, n2 = n2, n1 + n2
-    print("n1 = {0}, n2 = {1}".format(n1, n2))
+    if limit > -1:
+        while n1 + n2 < limit:
+            yield n1 + n2
+            n1, n2 = n2, n1 + n2
+        print("n1 = {0}, n2 = {1}".format(n1, n2))
+    else:
+        while True:
+            yield n1 + n2
+            n1, n2 = n2, n1 + n2
 
 def primeGenerator(anchor:int):
     for num in range(2,anchor+1):
