@@ -140,8 +140,28 @@ def isLeapYear(year:int) -> bool:
     return False
 
 def getDivisors(num:int) -> list:
+    if num in (0,1):
+        return []
     divisors = []
     for div in range(num, 0, -1):
         if num % div == 0:
             divisors.append(int(num / div))
     return list(divisors)
+
+def getSumOfDivisors(n:int) -> int:
+    if n in (0,1):
+        return 0
+    try:
+        result = 0
+        divs = list(getDivisors(n))
+        if type(divs) == int:
+            return divs
+        else:
+            if len(divs) > 2:
+                for x in divs[:-1]:
+                    result += x
+            else:
+                result = divs[0]
+            return result
+    except TypeError as e:
+        print("Type Error occurred: {0} [Circumstance: n={1}]".format(e,n))

@@ -13,32 +13,15 @@ stopper = sw.StopWatch("Euler problem 0021 'Amicable numbers' - Solution")
 limit = 10000
 
 def solution01():
-    def d(n:int) -> int:
-        try:
-            result = 0
-            divs = list(tk.getDivisors(n))
-            if type(divs) == int:
-                return divs
-            else:
-                if len(divs) > 2:
-                    for x in divs[:-1]:
-                        result += x
-                else:
-                    result = divs[0]
-                #result = sum(divs[0:-1]) if len(divs) > 2 else divs[0]
-                return result
-        except TypeError as e:
-            print("Type Error occurred: {0} [Circumstance: n={1}]".format(e,n))
-
     def isAmicable(a:int, b:int) -> bool:
-        if d(a) == b and d(b) == a and a != b:
+        if tk.getSumOfDivisors(a) == b and tk.getSumOfDivisors(b) == a and a != b:
             return True
         return False
 
     sum = 0
     for i in range(2,limit):
-        if isAmicable(i, d(i)):
-            print(i, d(i))
+        if isAmicable(i, tk.getSumOfDivisors(i)):
+            print(i, tk.getSumOfDivisors(i))
             sum += i
     print(sum)
 
